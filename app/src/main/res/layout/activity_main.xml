@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <GridLayout
+        android:id="@+id/gridTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/colorBlue100"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="@string/tagAtual"
+            android:textColor="@color/colorBlue100"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/textTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlue100"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="openDialog"
+            android:layout_marginStart="3dp"
+            android:hint="@string/texttHintTag"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold">
+        </TextView>
+
+    </GridLayout>
+
+    <FrameLayout
+        android:id="@+id/frameConteudo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+
+
+    </FrameLayout>
+
+
+    <GridLayout
+        android:id="@+id/gridButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0">
+
+        <Button
+            android:id="@+id/buttonTexto"
+            style="@android:style/Widget.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/btnText"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold"/>
+
+
+        <Button
+            android:id="@+id/buttonFotos"
+            style="@android:style/Widget.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/btnPhotos"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold"/>
+
+    </GridLayout>
+
+
+</LinearLayout>

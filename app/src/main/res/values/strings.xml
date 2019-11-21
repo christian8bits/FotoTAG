@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">FotoTAG</string>
+    <string name="btnText">Text</string>
+    <string name="btnPhotos">Photos</string>
+    <string name="textViewTag">TAG EXEMPLO</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="fragmentText">FRAGMENTO TEXTO</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="fragmentFotos">FRAGMENTO FOTOS</string>
+    <string name="itemCamera">Take a photo</string>
+    <string name="itemNovaTag">New Tag</string>
+    <string name="itemCompartilhar">Share</string>
+    <string name="itemListaTag">List Tags</string>
+    <string name="editTextTag">Tag</string>
+    <string name="tagAtual">TAG: </string>
+    <string name="tagText">Tag Clicada</string>
+    <string name="editHintDescricao">Type a description for the TAG</string>
+    <string name="textTagHint">Nenhuma TAG</string>
+    <string name="editHintTag">Type a Tag</string>
+    <string name="texttHintTag">Select a Tag</string>
+    <string name="fotoImageView">fotoCamera</string>
+
+</resources>

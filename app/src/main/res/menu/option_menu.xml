@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/itemCamera"
+        android:icon="@drawable/ic_camera_alt_black_24dp"
+        android:title="@string/itemCamera"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/itemNovaTag"
+        android:title="@string/itemNovaTag"
+        android:icon="@drawable/ic_add_black_24dp"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/itemCompartilhar"
+        android:title="@string/itemCompartilhar"
+        android:icon="@drawable/ic_share_black_24dp"
+        app:showAsAction="ifRoom"/>
+
+</menu>
