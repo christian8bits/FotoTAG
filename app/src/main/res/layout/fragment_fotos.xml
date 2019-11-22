@@ -7,19 +7,12 @@
     tools:context=".fragment.FotosFragment">
 
 
-    <TextView
-        android:id="@+id/textFragmentFotos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_light"
-        android:backgroundTint="@android:color/background_light"
-        android:text="@string/fragmentFotos" />
 
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:contentDescription="@string/fotoImageView"
         android:visibility="visible">
     </ImageView>

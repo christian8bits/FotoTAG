@@ -3,12 +3,21 @@ package com.christian.fototag.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,6 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +39,10 @@ import com.christian.fototag.R;
 import com.christian.fototag.fragment.FotosFragment;
 import com.christian.fototag.fragment.TextoFragment;
 import com.christian.fototag.model.TagTexto;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 import java.util.ArrayList;
@@ -48,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
     private Boolean taNoTexto = true;
     List<String> nomeTags = new ArrayList<String>();
     ListView listViewTags;
+    private ImageView imagem1;
+    static final int  REQUEST_IMAGE_CAPTURE  = 1;
+    String mCurrentPhotoPath;
+
 
 
 
@@ -57,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //TIRA SOMBRA DA TOOLBAR
         getSupportActionBar().setElevation(0);
+
+
 
         buttonFoto = findViewById(R.id.buttonFotos);
         buttonText = findViewById(R.id.buttonTexto);
@@ -139,20 +159,14 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.itemCamera:
                 Toast.makeText(this, "Camera Clicado", Toast.LENGTH_SHORT).show();
-                Intent in = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if(in.resolveActivity(getPackageManager()) !=null){
-             
-                    atualizaObjetos(atual);
-                }
-
-
+                getPermissions();
 
                 return true;
 
             case R.id.itemCompartilhar:
                 atualizaObjetos(atual);
                 if (!nomeTags.isEmpty()) {
-                    if (taNoTexto == true) {
+                    if (taNoTexto) {
                         Toast.makeText(this, "Compartilhar TEXTO", Toast.LENGTH_SHORT).show();
 
                         Intent enviarIntent = new Intent();
@@ -256,6 +270,54 @@ public class MainActivity extends AppCompatActivity {
         dialog.setTitle(tituloAlerta);
         dialog.show();
     }
+
+
+
+    //CRIANDO PERMISSÕES
+    private void getPermissions() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        }
+        else
+            dispatchTakePictureIntent();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    dispatchTakePictureIntent();
+                } else {
+                    Toast.makeText(this, "Não vai funcionar!!!", Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+        }
+    }
+
+
+    //CHAMANDO A CAMERA
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+          startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+
+                ImageView imagem = (ImageView)findViewById(R.id.imageView1);
+                Bitmap photo = (Bitmap)data.getExtras().get("data");
+                imagem.setImageBitmap(photo);
+        }
+    }
+
+
+
 
 
 
